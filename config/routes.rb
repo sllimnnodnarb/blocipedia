@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :models
   resources :wikis
-  resources :users
 
   get 'wikis/index'
 

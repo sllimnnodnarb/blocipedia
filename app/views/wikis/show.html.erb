@@ -1,11 +1,7 @@
-<div>
-  <h1>
-    <%= @wiki.title %> <br>
+<h1><%= @wiki.title %></h1><br>
     <small>
-      submitted <%= time_ago_in_words(@wiki.created_at) %> ago by <%= @wiki.user %>
+      submitted <%= time_ago_in_words(@wiki.created_at) %> ago by <%= @wiki.user.email %>
     </small>
-  </h1>
-</div>
 <div class="row">
   <div class="col-md-8">
     <p><%= @wiki.body %></p>
@@ -18,14 +14,10 @@
   </div>
   <div class="col-md-4">
     <% if current_user %>
-      <%= link_to "Edit", wiki_path(@wiki), class: 'btn btn-success' %>
+      <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
     <% end %>
-    <% if current_user? %>
-      <%= link_to "Delete Wiki", [@wiki], method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this wiki?'} %>
+    <% if current_user %>
+      <%= link_to "Delete Wiki", (@wiki), method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this wiki?'} %>
     <% end %>
-    <div class="col-md-4">
-
-
-    </div>
   </div>
 </div>

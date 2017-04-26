@@ -6,10 +6,6 @@ class User < ApplicationRecord
 
   has_many :wikis, dependent: :destroy
 
-
-
-
-
    def avatar_url(size)
      gravatar_id = Digest::MD5::hexdigest(self.email).downcase
      "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"

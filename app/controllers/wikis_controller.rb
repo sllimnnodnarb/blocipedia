@@ -1,8 +1,5 @@
 class WikisController < ApplicationController
   before_action :authenticate_user!
-  #before_action :authorize_user
-  #before_action :authorized_for_create, only: [:new, :create, :destroy]
-  #before_action :authorized_for_update, only: [:edit, :update]
 
   def index
     @wikis = Wiki.all
@@ -21,7 +18,7 @@ class WikisController < ApplicationController
     @wiki.user = current_user
 
     if @wiki.save
-      flash[:notice] = "Wiki was saved."
+
       redirect_to [@wiki]
     else
       flash.now[:alert] = "There was an error saving the wiki. Please try again."

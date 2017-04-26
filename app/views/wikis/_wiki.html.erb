@@ -1,11 +1,11 @@
 <div class="media">
   <div class="media-body">
     <h4 class="media-heading">
-
-      <%= link_to wiki.title, wikis_index_path(@wikis, @wiki) %>
+      <%= image_tag wiki.user.avatar_url(48), class: "gvtr" %>
+      <%= link_to wiki.title, wiki_path(wiki) %>
     </h4>
     <small>
-      submitted <%= time_ago_in_words(wiki.created_at) %> ago by <%= wiki.user %> <br>
+      submitted <%= time_ago_in_words(wiki.created_at) %> ago by <%= wiki.user.email %> <br>
     </small>
   </div>
 </div>
