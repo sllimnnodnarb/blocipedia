@@ -23,6 +23,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+gem 'random_data'
 gem 'bootstrap-sass'
 gem 'bcrypt'
 gem 'sass-rails', '~> 5.0'

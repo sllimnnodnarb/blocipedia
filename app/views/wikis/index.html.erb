@@ -1,0 +1,13 @@
+<h1>Wikis</h1>
+<br>
+<% if current_user %>
+<%= link_to "Create a New Wiki", new_wiki_path, class: 'btn btn-default' %>
+<% end %>
+<br><br>
+<div class="row">
+  <div class="col-md-8">
+    <% @wikis.each do |wiki| %>
+    <%= render partial: 'wiki', locals: { wiki: wiki } %>
+    <% end %>
+  </div>
+</div>

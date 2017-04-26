@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
 
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
   #skip before_action :authenticate_user! <--this skips the before_action
 
   def index
@@ -10,5 +10,8 @@ class WelcomeController < ApplicationController
   end
 
   def support
+  end
+
+  def show
   end
 end
