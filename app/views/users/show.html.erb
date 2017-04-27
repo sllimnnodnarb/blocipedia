@@ -9,7 +9,7 @@
         </div>
       <% end %>
       <div class="media-body">
-        <h2 class="media-heading"><%= @user.name %></h2>
+        <h2 class="media-heading"><%= @user.email %></h2>
         <small>
           <%= pluralize(@user.wikis.count, 'wiki') %>,
         </small>
@@ -17,8 +17,8 @@
     </div>
   </div>
 </div>
-<% if no_user_wikis? %>
-  <h4> Sadly, <%= @user.name %> has yet to create a single wiki. </h4>
+<% if @user.wikis.count == nil ||   @user.wikis.count == 0 %>
+  <h4> Sadly, <%= @user.email %> has yet to create a single wiki. </h4>
 <% else %>
   <h2>Wikis</h2>
   <%= render @user.wikis %>

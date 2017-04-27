@@ -1,5 +1,6 @@
 class WikisController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_user
 
   def index
     @wikis = Wiki.all
@@ -18,7 +19,7 @@ class WikisController < ApplicationController
     @wiki.user = current_user
 
     if @wiki.save
-
+      flash.now[:alert] = "Your wiki has been saved."
       redirect_to [@wiki]
     else
       flash.now[:alert] = "There was an error saving the wiki. Please try again."
@@ -61,11 +62,11 @@ class WikisController < ApplicationController
     params.require(:wiki).permit(:title, :body, :private)
   end
 
-  #def authorize_user
-    #unless current_user?
-      #flash[:alert] = "You must be a current user to do that."
-      #redirect_to wikis_path
-    #end
-  #end
+  def authorize_user
+    unless  current_user || current_user.admin? || current_user.vip?
+      flash[:alert] = "You must be a current user to do that."
+      redirect_to wikis_path
+    end
+  end
 
 end

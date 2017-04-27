@@ -29,8 +29,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @wikis = @user.wikis.visible_to(current_user)
+    @user = current_user
+    @wikis = @current_user.wikis
   end
 
 end

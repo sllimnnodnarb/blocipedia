@@ -17,10 +17,13 @@
         <div>
           <small class="pull-right">
             <% if user_signed_in? %>
-              Signed in as: <strong><%= current_user.email %></strong><br>
-                <%= image_tag current_user.avatar_url(48), class: "gvtr" %>
-              <%= link_to 'Edit profile', edit_user_registration_path, class: 'pull-right' %><br>
-              <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'pull-right' %><br>
+
+              Signed in as: <strong><%= link_to current_user.email, users_show_path %></strong> <br>
+
+
+<%= image_tag current_user.avatar_url(48), class: "gvtr pull-right" %><br>
+<%= link_to 'Edit profile', edit_user_registration_path, class: 'pull-right' %>
+<%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'pull-right' %><br>
             <% else %>
               <%= link_to "Sign In", new_user_session_path  %>
             <% end %>
