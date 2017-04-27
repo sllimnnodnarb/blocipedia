@@ -4,12 +4,20 @@ pull-right .signup {
  }
 .gvtr {
  margin-left: 10px;
- margin-right: 15px;
+ margin-right: 7px;
  margin-bottom: 10px;
  margin-top: 0px;
  box-shadow: 7px 7px 5px grey;
+ position: relative;
+ float: right;
 }
 
+.advid {
+  background-image: url("https://static1.squarespace.com/static/57262d2bb09f951c90cff351/57263f5d27d4bd23efd7a912/584da0aed482e93820719068/1486011063915/26_hpf_library_overall_email.jpg?format=1500w");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: .7;
+}
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
