@@ -38,9 +38,9 @@ class ChargesController < ApplicationController
 
   def upgrade
     if current_user.user? do
-      current_user.user == current_user.admin
+    current_user.admin!
     end
-    flash[:notice] = "You are now upgraded to VIP status"
+    flash[:notice] = "You are now upgraded to VIP status."
     redirect_to users_show_path(current_user)
     end
   end
