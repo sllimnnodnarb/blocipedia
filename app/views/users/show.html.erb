@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-md-8">
     <div class="media">
-      <br />
+      <br>
       <% avatar_url = @user.avatar_url(128) %>
-      <% if avatar_url %>
-        <div class="media-left">
-          <%= image_tag avatar_url, class: 'media-object' %>
+      <% if current_user %>
+        <div class="pull-left">
+          <%= image_tag avatar_url, class: 'media-object pull-left' %>
         </div>
       <% end %>
       <div class="media-body">
@@ -22,4 +22,9 @@
 <% else %>
   <h2>Wikis</h2>
   <%= render @user.wikis %>
+<% end %>
+<% if current_user.user? %>
+  <div class="col-md-4">
+    <%= button_to "Upgrade to VIP", charges_upgrade_path, method: :upgrade, class: 'btn btn-lg btn-primary' %>
+  </div>
 <% end %>

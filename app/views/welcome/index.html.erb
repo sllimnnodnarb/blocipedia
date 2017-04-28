@@ -6,12 +6,21 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-4">
-    <h2>Unlimited Public Wikis</h2>
-    <p>FREE plan.</p>
+  <div class="col-md-6">
+    <h2>Collaborative Public Wikis</h2>
+    <p>Ready to get to work creating resources that advance learning and knowledge?<br><br>
+    Sign up to get started today!</p>
+    <div class="col-md-4">
+      <%= link_to "Get Started", wikis_path, class: 'btn btn-lg btn-success' %>
+    </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-6">
     <h2>Infinite Private Wikis</h2>
-    <p>Exclusive plan</p>
+    <p>Sensitive collaboration.  Secure.  Private.  Unlimited.<br>
+    Perfect for business information sharing without all the overhead.<br><br>
+    Get Exclusive access now!</p>
+    <div class="col-md-4">
+      <%= link_to "Get Started", new_charge_path, class: 'btn btn-lg btn-primary' %>
+    </div>
   </div>
-</div>
+</div><br><br>

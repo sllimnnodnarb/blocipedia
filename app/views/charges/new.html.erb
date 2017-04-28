@@ -1,0 +1,13 @@
+<%= form_tag charges_path do %>
+  <h2>To gain exclusive VIP access to:</h2><br>
+  <h4>Create Private Wikis</h4>
+  <h4>Added Site Features</h4>
+  <h4>Unlimited Wiki Creation</h4><br>
+  <script
+    class='stripe-button'
+    src="https://checkout.stripe.com/checkout.js"
+    data-key="<%= @stripe_btn_data[:key] %>"
+    data-amount="<%= @stripe_btn_data[:amount] %>"
+    data-description="<%= @stripe_btn_data[:description] %>" >
+  </script>
+<% end %>

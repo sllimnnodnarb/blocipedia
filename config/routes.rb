@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :models
   resources :wikis
+  resources :charges, only: [:new, :create]
 
   get 'wikis/index'
 
@@ -25,4 +26,8 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
 
   root 'welcome#index'
+
+  get 'charges/upgrade'
+
+  post 'charges/upgrade'
 end
