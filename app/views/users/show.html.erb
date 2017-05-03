@@ -9,25 +9,31 @@
       <div class="media-body">
         <h2 class="media-heading"><%= @user.email %></h2>
         <small>
-          <%= pluralize(@user.wikis.count, 'wiki') %>,
+          <%= pluralize(@user.wikis.count, 'wiki') %>
         </small>
       </div>
     </div>
   </div>
 </div>
-<% if @user.wikis.count == nil || @user.wikis.count == 0 %>
-  <h4> Sadly, <%= @user.email %> has yet to create a single wiki. </h4>
-<% else %>
-  <h2>Wikis</h2>
-  <%= render @user.wikis %>
-<% end %>
+<br>
 <% if current_user.user? %>
   <div class="col-md-4">
+    <p> Do you want to create and view private wikis? Upgrade now! </p>
     <%= link_to "Upgrade to VIP Access", new_charge_path, class: 'btn btn-lg btn-success' %>
   </div>
 <% end %>
-<% if current_user.vip? %>
-<div class="col-md-4">
-  <%= button_to "Cancel VIP Access", charges_downgrade_path, method: :post, class: 'btn btn-lg btn-success' %>
-</div>
+  <br>
+<% if @user.wikis.count == nil || @user.wikis.count == 0 %>
+  <h4> Sadly, <%= @user.email %> has yet to create a single wiki. </h4>
+<% else %><br><br><br><br>
+  <h2>Wikis</h2>
+  <%= render @user.wikis %>
 <% end %>
+<br>
+<br>
+<% if current_user.vip? %>
+  <div class="col-md-4">
+    <%= button_to "Cancel VIP Access", charges_downgrade_path, method: :post,  class: 'btn btn-lg btn-danger', data: { confirm: 'Are you sure you want to cancel VIP access?  All private wikis  will also be made public!' } %>
+  </div>
+<% end %>
+<br><br>

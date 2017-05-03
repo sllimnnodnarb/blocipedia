@@ -6,17 +6,9 @@
   <div class="col-md-8">
     <p><%= @wiki.body %></p>
   </div>
-  <div>
-    <h3>Comments</h3>
-    <div class="com">
-
-    </div>
-  </div>
   <div class="col-md-4">
-    <% if current_user %>
       <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
-    <% end %>
-    <% if current_user.admin? || current_user.vip? && current_user == @wiki.user %>
+    <% if current_user.admin? || current_user.vip? %>
       <%= link_to "Delete Wiki", (@wiki), method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this wiki?'} %>
     <% end %>
   </div>

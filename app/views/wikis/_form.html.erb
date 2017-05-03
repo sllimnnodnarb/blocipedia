@@ -1,29 +1,28 @@
 <%= form_for [wiki] do |f| %>
-<% if wiki.errors.any? %>
-  <div class="alert alert-danger">
-    <h4><%= pluralize(wiki.errors.count, "error") %></h4>
-    <ul>
-      <% wiki.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+  <% if wiki.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(wiki.errors.count, "error") %></h4>
+      <ul>
+        <% wiki.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= form_group_tag(wiki.errors[:title]) do %>
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki Title" %>
-<% end %>
-<%= form_group_tag(wiki.errors[:body]) do %>
+  <% end %>
+  <%= form_group_tag(wiki.errors[:body]) do %>
     <%= f.label :body %>
     <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki description" %>
-<% end %>
-
+  <% end %>
   <div class="form-group">
-    <% if current_user.admin? || current_user.vip? %>
+  <% if current_user.admin? || current_user.vip? %>
     <%= f.label :private, class: 'checkbox' do %>
       <%= f.check_box :private %> Would you like to make this wiki private?
     <% end %>
-<% end %>
+  <% end %>
   </div>
   <%= f.submit "Save", class: 'btn btn-success' %>
 <% end %>

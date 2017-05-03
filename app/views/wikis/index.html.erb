@@ -1,14 +1,18 @@
 <h1>Wikis</h1>
 <br>
-<% if current_user %>
 <%= link_to "Create a New Wiki", new_wiki_path, class: 'btn btn-default' %>
-<% end %>
 <br><br>
 <div class="row">
   <div class="col-md-8">
-    <% if current_user.vip? || current_user.admin? %>
+    <% if current_user.admin? || current_user.vip? %>
       <% @wikis.each do |wiki| %>
-        <%= render partial: 'wiki', locals: { wiki: @wiki } %>
+        <%= render partial: 'wiki', locals: { wiki: wiki } %>
+      <% end %>
+    <% else %>
+      <% @wikis.each do |wiki| %>
+        <% if wiki.user.email == current_user.email? %>
+          <%= render partial: 'wiki', locals: { wiki: wiki } %>
+          <% end %>
       <% end %>
     <% end %>
   </div>

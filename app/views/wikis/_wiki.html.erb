@@ -1,16 +1,11 @@
 <div class="media">
   <div class="media-body">
     <h4 class="media-heading">
-      <% if current_user.admin? || current_user.vip? %>
       <%= image_tag wiki.user.avatar_url(48), class: "gvtr pull-left" %>
       <%= link_to wiki.title, wiki_path(wiki) %>
     </h4>
     <small>
       submitted <%= time_ago_in_words(wiki.created_at) %> ago by <%= wiki.user.email %> <br>
-    </small>
-    <% elsif @wikis.private == false %>
-    <%= link_to wiki.title, wiki_path(wiki) %>
-    <h3> You must obtain VIP status to create and view private wikis. </h3>
-    <% end %>
+    </small><br>
   </div>
 </div>

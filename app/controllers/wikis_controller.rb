@@ -19,7 +19,7 @@ class WikisController < ApplicationController
     @wiki.user = current_user
 
     if @wiki.save
-      flash.now[:alert] = "Your wiki has been saved."
+      flash[:notice] = "Your wiki has been saved."
       redirect_to [@wiki]
     else
       flash.now[:alert] = "There was an error saving the wiki. Please try again."
@@ -59,6 +59,7 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
+    defaults = { private: 'false' }
     params.require(:wiki).permit(:title, :body, :private)
   end
 
