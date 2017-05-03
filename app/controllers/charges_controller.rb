@@ -15,10 +15,9 @@ class ChargesController < ApplicationController
       description: "Exclusive Membership - #{current_user.email}",
       currency: 'usd'
     )
-
+    current_user.vip!
     flash[:notice] = "Thank you, #{current_user.email}! Ejoy Exclusive VIP access."
     redirect_to users_show_path(current_user) # or wherever
-    upgrade
 
     # Stripe will send back CardErrors, with friendly messages
     # when something goes wrong.
@@ -29,20 +28,27 @@ class ChargesController < ApplicationController
   end
 
   def new
-    @stripe_btn_data = {
-      key: "#{ Rails.configuration.stripe[:publishable_key] }",
-      description: "Exclusive Membership - #{current_user.email}",
-      amount: amount
-    }
-  end
+   @stripe_btn_data = {
+     key: "#{ Rails.configuration.stripe[:publishable_key] }",
+     description: "BigMoney Membership - #{current_user.email}",
+     amount: amount
+   }
+ end
 
   def upgrade
-    if current_user.user? do
-    current_user.admin!
+    if current_user
+      current_user.vip!
+      flash[:alert] = "You are now upgraded to VIP status."
+      current_user.wikis.update_all(private: true)
+      redirect_to users_show_path(current_user)
     end
-    flash[:notice] = "You are now upgraded to VIP status."
+  end
+
+  def downgrade
+    current_user.user!
+    current_user.wikis.update_all(private: false)
+    flash[:alert] = "You are now downgraded to User status."
     redirect_to users_show_path(current_user)
-    end
   end
 
   private

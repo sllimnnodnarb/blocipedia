@@ -3,11 +3,9 @@
     <div class="media">
       <br>
       <% avatar_url = @user.avatar_url(128) %>
-      <% if current_user %>
         <div class="pull-left">
-          <%= image_tag avatar_url, class: 'media-object pull-left' %>
+          <%= image_tag avatar_url, class: 'pull-left' %>
         </div>
-      <% end %>
       <div class="media-body">
         <h2 class="media-heading"><%= @user.email %></h2>
         <small>
@@ -17,7 +15,7 @@
     </div>
   </div>
 </div>
-<% if @user.wikis.count == nil ||   @user.wikis.count == 0 %>
+<% if @user.wikis.count == nil || @user.wikis.count == 0 %>
   <h4> Sadly, <%= @user.email %> has yet to create a single wiki. </h4>
 <% else %>
   <h2>Wikis</h2>
@@ -25,6 +23,11 @@
 <% end %>
 <% if current_user.user? %>
   <div class="col-md-4">
-    <%= button_to "Upgrade to VIP", charges_upgrade_path, method: :post, class: 'btn btn-lg btn-primary' %>
+    <%= link_to "Upgrade to VIP Access", new_charge_path, class: 'btn btn-lg btn-success' %>
   </div>
+<% end %>
+<% if current_user.vip? %>
+<div class="col-md-4">
+  <%= button_to "Cancel VIP Access", charges_downgrade_path, method: :post, class: 'btn btn-lg btn-success' %>
+</div>
 <% end %>

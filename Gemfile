@@ -14,6 +14,7 @@ group :development, :test do
   gem 'shoulda'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'byebug', platform: :mri
+  gem 'rails-controller-testing'
 end
 
 group :development do
