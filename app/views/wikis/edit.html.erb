@@ -9,6 +9,12 @@
       <li>Smile when you type.</li>
     </ul>
   </div>
+  <% if current_user == @wiki.user || current_user.admin? %><br>
+  <div class="col-md-8">
+    <h4>Tired of Working solo on your wikis?</h4>
+    <%= link_to "Invite a friend", wiki_collaborators_path(@wiki), class: "btn btn-primary" %>
+  </div>
+<% end %>
   <div class="col-md-8">
     <%= render partial: "form", locals: {wiki: @wiki} %>
   </div>

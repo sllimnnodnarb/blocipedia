@@ -1,0 +1,7 @@
+<%= form_for collaborators_create_path do |f| %>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: "Enter email" %><br>
+    <%= f.submit "Add Collaborator", class: 'btn btn-success' %>
+  </div>
+<% end %>

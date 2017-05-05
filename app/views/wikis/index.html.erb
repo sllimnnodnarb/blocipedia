@@ -10,7 +10,8 @@
       <% end %>
     <% else %>
       <% @wikis.each do |wiki| %>
-        <% if wiki.user.email == current_user.email? %>
+        <%# if wiki.user.email == current_user.email? %>
+        <% if !wiki.private? %>
           <%= render partial: 'wiki', locals: { wiki: wiki } %>
           <% end %>
       <% end %>

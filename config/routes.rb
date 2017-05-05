@@ -4,14 +4,11 @@ Rails.application.routes.draw do
   devise_for :models
   resources :wikis
   resources :charges
+  resources :wikis do
+    resources :collaborators, only: [:index, :create, :destroy]
+  end
 
-  get 'wikis/index'
-
-  get 'users/confirm'
-
-  get 'users/new'
-
-  get 'users/show'
+  resources :users, only: [:show]
 
   get 'welcome/index'
 
@@ -19,11 +16,7 @@ Rails.application.routes.draw do
 
   get 'welcome/support'
 
-  get 'registrations/new'
-
-  delete 'sessions/sign_out'
-
-  get 'sessions/destroy'
+  get 'users/show'
 
   root 'welcome#index'
 
@@ -32,5 +25,7 @@ Rails.application.routes.draw do
   post 'charges/upgrade'
 
   post 'charges/downgrade'
+
+
 
 end

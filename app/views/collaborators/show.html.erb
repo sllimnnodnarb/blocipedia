@@ -1,0 +1,32 @@
+<h1>Collaborators</h1>
+<div class="row">
+  <div class="col-md-8">
+    <div class="media">
+      <br />
+      <% avatar_url = @collaborator.avatar_url(128) %>
+      <% if avatar_url %>
+        <div class="media-left">
+          <%= image_tag avatar_url, class: 'media-object' %>
+        </div>
+      <% end %>
+      <div class="media-body">
+        <h2 class="media-heading"><%= @collaborator.email %></h2>
+        <small>
+          <%= pluralize(@collaborator.wikis.count, 'wiki') %>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+<% if no_collaborator_wikis? %>
+  <h4> Sadly, <%= @collaborator.email %> has yet to create a single wiki. </h4>
+<% else %>
+  <h2>Wikis</h2>
+  <%= render @collaborator.wikis %>
+<% end %>
+<div class="col-md-4">
+    <%= link_to "Add", new_colaborator_path, class: 'btn btn-success' %>
+  <% if current_user.admin? %>
+    <%= link_to "Delete Collaborator", (@collaborator), method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this collaborator?'} %>
+  <% end %>
+</div>

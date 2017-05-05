@@ -5,6 +5,13 @@
 <div class="row">
   <div class="col-md-8">
     <p><%= markdown @wiki.body %></p>
+    <small>collaborators:
+      <% if @wiki.users.count > 0 %>
+        <% @wiki.users.each do |user| %>
+          <strong><%= @wiki.user.email %></strong>
+        <% end %>
+      <% end %>
+    </small>
   </div>
   <div class="col-md-4">
       <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>

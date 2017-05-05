@@ -1,0 +1,32 @@
+<h1>Manage Collaborators for <%= @wiki.title %></h1>
+<small>made possible in part by collaborators like these:</small>
+<br>
+<div class="row">
+  <div class="col-md-8">
+    <table class="table">
+      <tr>
+        <th><h3>User</h3></th>
+        <th></th>
+      </tr>
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to user.email, user %>
+          </td>
+          <td>
+            <% if @wiki.users.include?(user) %>
+               <% collaborator = @wiki.collaborator_for(user) %>
+               <%= link_to "Remove as Collaborator", wiki_collaborator_path(@wiki, collaborator), method: :delete, class: 'btn btn-danger' %>
+            <% else %>
+              <%= link_to "Add as Collaborator", wiki_collaborators_path(@wiki, user_id: user.id), method: :post, class: 'btn btn-success' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+<br>
+<h3>Have you created a wiki yet?<br>What are you waiting for?</h3>
+<%= link_to "Create a New Wiki", new_wiki_path, class: 'btn btn-default' %>
+<br><br>

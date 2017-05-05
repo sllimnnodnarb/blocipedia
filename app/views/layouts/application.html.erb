@@ -20,7 +20,7 @@
           <% end %>
           <small class="pull-right">
             <% if user_signed_in? %>
-              <small class="pull-right">Signed in as: <strong><%= link_to current_user.email, users_show_path %></strong></small><br>
+              <small class="pull-right">Signed in as: <strong><%= link_to current_user.email, current_user %></strong></small><br>
               <small class="pull-right">
                 Membership level:&nbsp
                   <strong><%= current_user.role %></strong>
